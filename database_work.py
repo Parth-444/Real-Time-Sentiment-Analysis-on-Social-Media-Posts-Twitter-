@@ -1,6 +1,5 @@
 from sqlalchemy import create_engine, Integer, String, DATETIME, Text, Column
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, declarative_base
 
 Base = declarative_base()
 engine = create_engine('sqlite:///tweets.db')
@@ -14,6 +13,7 @@ class Tweet(Base):
     text = Column(Text, nullable=False)
     created_at = Column(DATETIME, nullable=False)
     author_id = Column(String, nullable=False)
+    cleaned_text = Column(Text)
 
 
 Base.metadata.create_all(engine)

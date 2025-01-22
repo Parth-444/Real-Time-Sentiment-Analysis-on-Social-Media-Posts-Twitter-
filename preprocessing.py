@@ -1,13 +1,25 @@
 import re
 import nltk
 from nltk.corpus import stopwords
-import json
+from sqlalchemy.orm import sessionmaker
+from database_work import *
 
 nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
+Session = sessionmaker(bind=engine)
+session = Session()
 
 
 def preprocess_tweet(tweet_text):
+    """
+        Cleans and preprocesses raw tweet text.
+
+        Args:
+            text (str): Raw tweet text.
+
+        Returns:
+            str: Cleaned tweet text.
+        """
     tweet_text = re.sub(r"http\S+|www\S+|https\S+", "", tweet_text, flags=re.MULTILINE)
     tweet_text = re.sub(r"@\w+|#\w+", "", tweet_text)
     tweet_text = re.sub(r"[^A-Za-z\s]", "", tweet_text)
@@ -19,26 +31,22 @@ def preprocess_tweet(tweet_text):
 
 
 def preprocess_tweets(input_file, output_file):
+    """
+        Fetches tweets from the database, preprocesses them, and updates the database.
+
+        Args:
+            session (Session): SQLAlchemy session object.
+        """
     try:
-        with open(input_file, "r") as infile:
-            tweets = json.load(infile)
+        tweets = session.query(Tweet).filter(Tweet.cleaned_text == None).all()
 
-        cleaned_tweets = []
+        print(f"Found {len(tweets)} tweets to preprocess.")
         for tweet in tweets:
-            cleaned_tweet = preprocess_tweet(tweet["text"])
-            cleaned_tweets.append({
-                "id": tweet["id"],
-                "created_at": tweet["created_at"],
-                "cleaned_text": cleaned_tweet
-            })
+            tweet.cleaned_text = preprocess_tweet(tweet.text)
 
-        with open(output_file, "w") as outfile:
-            json.dump(cleaned_tweets, outfile, indent=4)
+        session.commit()
+        print(f"Successfully preprocessed {len(tweets)} tweets.")
 
-        print(f"Preprocessed tweets saved to {output_file}")
 
     except Exception as e:
         print(f"Error during preprocessing: {e}")
-
-
-# preprocess_tweets('recent_tweets.json', 'output_cleaned_file.json')

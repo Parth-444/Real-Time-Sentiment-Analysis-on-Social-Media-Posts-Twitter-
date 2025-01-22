@@ -52,5 +52,3 @@ def fetch_recent_tweets(client, query, session, max_results=2):
 
     except Exception as e:
         print(f"Error fetching tweets: {e}")
-
-
