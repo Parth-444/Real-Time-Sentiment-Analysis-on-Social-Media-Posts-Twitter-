@@ -30,7 +30,7 @@ def preprocess_tweet(tweet_text):
     return cleaned_tweet
 
 
-def preprocess_tweets(input_file, output_file):
+def preprocess_tweets(session):
     """
         Fetches tweets from the database, preprocesses them, and updates the database.
 

@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Integer, String, DATETIME, Text, Column
+from sqlalchemy import create_engine, Integer, String, DATETIME, Text, Column, Float
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 Base = declarative_base()
@@ -14,6 +14,8 @@ class Tweet(Base):
     created_at = Column(DATETIME, nullable=False)
     author_id = Column(String, nullable=False)
     cleaned_text = Column(Text)
+    sentiment_label = Column(Text)
+    sentiment_score = Column(Float)
 
 
 Base.metadata.create_all(engine)
