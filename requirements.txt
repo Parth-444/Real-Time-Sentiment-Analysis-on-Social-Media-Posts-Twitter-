@@ -1,0 +1,5 @@
+nltk
+sqlalchemy
+python-dotenv
+tweepy
+transformers
