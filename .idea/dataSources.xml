@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:sqlite:C:\Users\Vermillion\PycharmProjects\twitter_real_time_sentiment\tweets.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="tweets.db" uuid="b2bad3df-7fb3-464e-a834-490358cb2a8a">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/tweets.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

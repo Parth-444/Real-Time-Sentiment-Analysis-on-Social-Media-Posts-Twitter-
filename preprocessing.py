@@ -2,7 +2,7 @@ import re
 import nltk
 from nltk.corpus import stopwords
 from sqlalchemy.orm import sessionmaker
-from database_work import *
+from database_file import *
 
 nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))

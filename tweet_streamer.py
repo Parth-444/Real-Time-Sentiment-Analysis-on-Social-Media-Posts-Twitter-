@@ -1,7 +1,7 @@
 import tweepy
 import os
 from dotenv import load_dotenv
-from database_work import *
+from database_file import *
 
 load_dotenv()
 BEARER_TOKEN = os.getenv("BEARER_TOKEN")

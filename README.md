@@ -61,7 +61,7 @@ BEARER_TOKEN=your_twitter_bearer_token
 ### 4. Initialize the Database
 Run the following script to set up the SQLite database:
 ```bash
-python database_work.py
+python database_file.py
 ```
 
 ### 5. Run the Pipeline

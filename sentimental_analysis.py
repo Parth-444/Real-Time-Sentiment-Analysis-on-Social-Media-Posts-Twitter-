@@ -1,8 +1,8 @@
 from transformers import pipeline
 from sqlalchemy.orm import Session
-from database_work import *
-
-sentiment_pipeline = pipeline('sentiment')
+from database_file import *
+import torch
+sentiment_pipeline = pipeline('sentiment-analysis')
 
 
 def analyze_sentiment_in_db(session: Session):
