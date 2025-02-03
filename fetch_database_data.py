@@ -22,7 +22,18 @@ def fetch_data(sentiment=None, keyword=None, start_date=None, end_date=None):
             pd.DataFrame: Filtered tweets as a DataFrame.
         """
     query = session.query(Tweet)
-    return query.all()
+    tweets = query.all()
+    data = [
+        {
+            "ID": tweet.id,
+            "Text": tweet.text,
+            "Created At": tweet.created_at,
+            "Sentiment": tweet.sentiment_label,
+            "Score": tweet.sentiment_score,
+        }
+        for tweet in tweets
+    ]
+    return pd.DataFrame(data)
     # if sentiment:
     #     query = query.filter(Tweet.sentiment_label == sentiment)
     # if keyword:

@@ -25,7 +25,7 @@ client = Client(bearer_token=BEARER_TOKEN)
 # Main function to run the pipeline
 def main():
     print("===== Step 1: Fetching Tweets =====")
-    query = "Python Data Science"
+    query = "iphone 16"
     fetch_recent_tweets(client, query=query, max_results=10, session=session)
 
     print("===== Step 2: Preprocessing Tweets =====")
